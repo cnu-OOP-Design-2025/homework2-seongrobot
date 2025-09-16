@@ -44,28 +44,28 @@ void doNamespaceTest(){
     cout << "Namespace Test" << endl;
 
     // 정수형 계산기 테스트
-    cout << "[IntCalc] 10 + 3 = " << 0 /*TODO*/ << endl;
-    cout << "[IntCalc] 10 - 3 = " << 0 /*TODO*/ << endl;
-    cout << "[IntCalc] 10 * 3 = " << 0 /*TODO*/ << endl;
-    cout << "[IntCalc] 10 / 3 = " << 0 /*TODO*/ << endl;
+    cout << "[IntCalc] 10 + 3 = " << IntCalc::add(10, 3) << endl;
+    cout << "[IntCalc] 10 - 3 = " << IntCalc::subtract(10, 3) << endl;
+    cout << "[IntCalc] 10 * 3 = " << IntCalc::multiply(10, 3) << endl;
+    cout << "[IntCalc] 10 / 3 = " << IntCalc::divide(10, 3) << endl;
 
-    cout << "[IntCalc] 10.5 + 3.2 = " << 0 /*TODO*/ << endl;
-    cout << "[IntCalc] 10.5 - 3.2 = " << 0 /*TODO*/ << endl;
-    cout << "[IntCalc] 10.5 * 3.2 = " << 0 /*TODO*/ << endl;
-    cout << "[IntCalc] 10.5 / 3.2 = " << 0 /*TODO*/ << endl;
+    cout << "[IntCalc] 10.5 + 3.2 = " << IntCalc::add(10.5, 3.2) << endl;
+    cout << "[IntCalc] 10.5 - 3.2 = " << IntCalc::subtract(10.5, 3.2) << endl;
+    cout << "[IntCalc] 10.5 * 3.2 = " << IntCalc::multiply(10.5, 3.2) << endl;
+    cout << "[IntCalc] 10.5 / 3.2 = " << IntCalc::divide(10.5, 3.2) << endl;
 
 
     // 실수형 계산기 테스트
-    cout << "[FloatCalc] 10 + 3 = " << 0.0f /*TODO*/ << endl;
-    cout << "[FloatCalc] 10 - 3 = " << 0.0f /*TODO*/ << endl;
-    cout << "[FloatCalc] 10 * 3 = " << 0.0f /*TODO*/ << endl;
-    cout << "[FloatCalc] 10 / 3 = " << 0.0f /*TODO*/ << endl;
+    cout << "[FloatCalc] 10 + 3 = " << FloatCalc::add(10, 3) << endl;
+    cout << "[FloatCalc] 10 - 3 = " << FloatCalc::subtract(10, 3) << endl;
+    cout << "[FloatCalc] 10 * 3 = " << FloatCalc::multiply(10, 3) << endl;
+    cout << "[FloatCalc] 10 / 3 = " << FloatCalc::divide(10, 3) << endl;
 
 
-    cout << "[FloatCalc] 10.5 + 3.2 = " << 0.0f /*TODO*/ << endl;
-    cout << "[FloatCalc] 10.5 - 3.2 = " << 0.0f /*TODO*/ << endl;
-    cout << "[FloatCalc] 10.5 * 3.2 = " << 0.0f /*TODO*/ << endl;
-    cout << "[FloatCalc] 10.5 / 3.2 = " << 0.0f /*TODO*/ << endl;
+    cout << "[FloatCalc] 10.5 + 3.2 = " << FloatCalc::add(10.5, 3.2) << endl;
+    cout << "[FloatCalc] 10.5 - 3.2 = " << FloatCalc::subtract(10.5, 3.2) << endl;
+    cout << "[FloatCalc] 10.5 * 3.2 = " << FloatCalc::multiply(10.5, 3.2) << endl;
+    cout << "[FloatCalc] 10.5 / 3.2 = " << FloatCalc::divide(10.5, 3.2) << endl;
 }
 void doTest1(){
     cout << "---------------------------" << endl;
@@ -82,7 +82,7 @@ void doTest2(){
     StudentStruct charlie("Charlie", 1003, 70, 99.0);
 
 
-    int idx = -1;
+    int idx = findStudentByStudentID(students, numOfStudent, charlie.id);
     /* TODO: homework1.cpp의 findStudentByStudentID() 함수 호출을 homework2-2.h의 findStudentByStudentID 함수 선언에 맞춰 수정하기 */
     /*
     idx = findStudentByStudentID(charlie.id);
@@ -91,6 +91,9 @@ void doTest2(){
     if(idx >= 0)
         modifyRecord(students, numOfStudent, charlie);
 
+    addStudent(students, &numOfStudent, "Ana", 1051, 88, 65);
+    addStudent(students, &numOfStudent, "Suji", 1052, 90, 93);
+    addStudent(students, &numOfStudent, "Zhang", 1053, 100, 40);
     /* TODO: homework1.cpp의 addStudent() 함수 호출를 homework2-2.h의 addStudent 함수 선언에 맞춰 수정하기 */
     /*
     addStudent("Ana", 1051, 88, 65);
@@ -106,6 +109,8 @@ void doTest3(){
     std::cout << "---------------------------" << std::endl;
     std::cout << "Test 3" << std::endl;
 
+    deleteStudent(students,&numOfStudent,1011);
+    deleteStudent(students,&numOfStudent,1029);
     /* TODO: homework1.cpp의 addStudent 함수를 homework2-2.h의 addStudent 함수에 맞춰 수정하기 */
     /*
     deleteStudent(1011);
@@ -118,7 +123,7 @@ void doTest3(){
 void doPointerTest(int select){
     const int MAX_STUDENTS = 100;
     /* TODO: StudentStruct[MAX_STUDENTS] 메모리 동적 할당 */
-    students = nullptr;
+    students = new StudentStruct[MAX_STUDENTS];
     fillStudentRecord(students, &numOfStudent);
 
     if(students == nullptr)
